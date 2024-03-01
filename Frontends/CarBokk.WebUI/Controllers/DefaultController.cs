@@ -21,7 +21,7 @@ namespace CarBokk.WebUI.Controllers
             if (token != null)
             {
                 var client = _httpClientFactory.CreateClient();
-
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var responseMessage = await client.GetAsync("https://localhost:7071/api/Location");
 
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

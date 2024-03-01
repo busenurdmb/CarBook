@@ -8,9 +8,12 @@ using System.Text.Json;
 using CarBook.Dto.LoginDtos;
 using CarBook.Dto.RegisterDtos;
 using CarBook.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBook.WebUI.Controllers
 {
+
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

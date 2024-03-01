@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using System.Text;
 using CarBook.Dto.AuthorDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Areas.Admin.Controllers
 {
+   
     [Area("Admin")]
     [Route("Admin/AdminAuthor")]
     public class AdminAuthorController : Controller

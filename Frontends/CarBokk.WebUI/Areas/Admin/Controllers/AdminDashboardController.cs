@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarBook.WebUI.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminDashboard")]
     public class AdminDashboardController : Controller

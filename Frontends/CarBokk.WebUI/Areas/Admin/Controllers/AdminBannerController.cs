@@ -3,10 +3,11 @@ using Newtonsoft.Json;
 using System.Text;
 using CarBook.Dto.BannerDtos;
 using CarBook.Dto.BrandDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Areas.Admin.Controllers
 {
-
+   
     [Area("Admin")]
     [Route("Admin/AdminBanner")]
     public class AdminBannerController : Controller

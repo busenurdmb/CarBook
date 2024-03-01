@@ -3,9 +3,11 @@ using Newtonsoft.Json;
 using System.Text;
 using CarBook.Dto.BrandDtos;
 using CarBook.Dto.RegisterDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UdemyCarBook.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
