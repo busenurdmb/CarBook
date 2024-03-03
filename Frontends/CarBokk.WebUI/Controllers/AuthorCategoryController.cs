@@ -1,18 +1,16 @@
 ﻿using CarBook.Dto.AuthorDtos;
+using CarBook.Dto.CategoryDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using System.Net.Http;
-using CarBook.Dto.CommentDtos;
-using CarBook.Dto.CategoryDtos;
 
 namespace CarBokk.WebUI.Controllers
 {
-    public class AuthorCommentController : Controller
+    public class AuthorCategoryController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AuthorCommentController(IHttpClientFactory httpClientFactory)
+        public AuthorCategoryController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -31,21 +29,18 @@ namespace CarBokk.WebUI.Controllers
                 {
 
                 }
+
                 
-                var responseMessage = await client.GetAsync("https://localhost:7071/api/Comments/GetCommentAllBytAuthorid?id=" +id);
+                var responseMessage = await client.GetAsync("https://localhost:7071/api/Categories");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                    var values = JsonConvert.DeserializeObject<List<ResultCommentDto>>(jsonData);
+                    var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
                     return View(values);
                 }
-               
-            
 
             }
             return View();
-
-          
         }
     }
 }
