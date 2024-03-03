@@ -1,0 +1,92 @@
+﻿   Cookie base ile orurum açma işlemi
+   
+   [HttpPost("AuthorLogin")]
+        public async Task<IActionResult> AuthorLogin(GetCheckAuthorQuery query)
+        {
+            var values = await _mediator.Send(query);
+            if (values.IsExist)
+            {
+                
+
+                return Ok(values);
+            }
+            else
+            {
+                return BadRequest("Kullanıcı adı veya şifre hatalıdır");
+            }
+        }
+
+
+           public async Task<IActionResult> AuthorIndex(CreateLoginDto createLoginDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var content = new StringContent(JsonSerializer.Serialize(createLoginDto), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("https://localhost:7071/api/Login/AuthorLogin", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                var user = JsonSerializer.Deserialize<UserDto>(jsonData, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                }); ; // API'den dönen veriyi uygun bir model nesnesine dönüştürün
+
+
+                // Oturum açma işlemi için kullanılacak kimlik bilgileri
+                var claims = new List<Claim>();
+
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.AuthorID.ToString())); // Kullanıcı ID'si
+                claims.Add(new Claim(ClaimTypes.Name, user.Username));
+                // Kullanıcı adı
+                claims.Add(new Claim(ClaimTypes.Role, user.Role)); // Kullanıcı adı
+            // Diğer gerekli kimlik bilgileri buraya eklenebilir
+        
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    // İsteğe bağlı olarak oturumun süresi vb. ayarlanabilir
+                };
+
+                // Oturum açma işlemi
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties);
+
+                // Oturum açma başarılı olduğunda yönlendirilecek sayfa
+                return RedirectToAction("Index", "Blog");
+            }
+            else
+            {
+                // Başarısız giriş durumunda uygun bir mesaj gösterilir
+                return View();
+            }
+        }
+
+        uı
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+           .AddCookie(opt =>
+           {
+               opt.Cookie.Name = "CarbookCookie";
+               opt.Cookie.SameSite = SameSiteMode.Strict;
+               opt.Cookie.HttpOnly = true;
+               opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+               opt.ExpireTimeSpan = TimeSpan.FromDays(1);
+               opt.LoginPath = "/Login/AuthorIndex/";
+               opt.LogoutPath = "/Login/LogOut/";
+               opt.AccessDeniedPath = "/Login/AuthorIndex/";
+
+
+           });
+           api
+           builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt =>
+{
+    opt.Cookie.Name = "CarbookCookie";
+    opt.Cookie.HttpOnly = true;
+    opt.Cookie.SameSite = SameSiteMode.Strict;
+    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    opt.ExpireTimeSpan = TimeSpan.FromDays(1);
+    opt.LoginPath = "/Login/AuthorIndex/";
+
+
+
+});

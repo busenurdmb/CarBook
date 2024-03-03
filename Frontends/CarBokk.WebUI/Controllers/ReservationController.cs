@@ -5,9 +5,11 @@ using System.Text;
 using CarBook.Dto.LocationDtos;
 using   CarBook.Dto.ReservationDtos;
 using CarBook.Dto.TestimonialDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBook.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class ReservationController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

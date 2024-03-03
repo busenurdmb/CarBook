@@ -1,0 +1,61 @@
+﻿                  
+@model List<GetBlogsByAuthorIdDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/AuthorIndex.cshtml";
+    int count = 0;
+}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Blog Listesi ve İşlemleri</h4>
+                        <p class="card-subtitle mb-4">
+                           Yazar Blog Paneline Hoşgeldiniz
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Başlık</th>
+                                        <th>Açıklama</th>
+                                        <th>Tarih</th>
+                                        <th>Kategori</th>
+                                       <th>Resim</th>
+                                        <th>Sil</th>
+                                        <th>Blogu Aç</th>
+                                        <th>Yorumlar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@item.Title</td>
+                                            <td>@item.Description</td>
+                                            <td>@item.CreatedDate</td>
+                                            <td>@item.CategoryID</td>
+                                            <td>@item.CoverImageUrl</td>
+                                            <td><a href="/Admin/AdminBlog/RemoveBlog/@item.BlogID" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Blog/BlogDetail/@item.BlogID" class="btn btn-outline-dark">Blogu Aç</a></td>
+                                            <td><a href="/Admin/AdminComment/Index/@item.BlogID" class="btn btn-outline-warning">Yorumlar</a></td>
+                                            <td><a href="/AuthorBlog/Update/@item.BlogID" class="btn btn-outline-warning">Güncelle</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

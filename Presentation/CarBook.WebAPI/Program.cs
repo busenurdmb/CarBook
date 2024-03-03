@@ -1,36 +1,4 @@
-using CarBook.Application.Features.CQRS.Handlers.AboutHandlers;
-using CarBook.Application.Interfaces;
-using CarBook.Infrastructure.Persistence.Context;
-using CarBook.Persistence.Repositories;
-
-using CarBook.Application.Features.CQRS.Handlers.BannerHandlers;
-using CarBook.Application.Features.CQRS.Handlers.BrandHandlers;
-using CarBook.Application.Features.CQRS.Handlers.CarHandlers;
-using UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
-using UdemyCarBook.Application.Features.CQRS.Handlers.CategoryHandlers;
-using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
-using CarBook.Application.Interfaces.CarInterfaces;
-using CarBook.Persistence.Repositories.CarRepositories;
 using CarBook.Application.Services;
-using CarBook.Application.Interfaces.BlogInterfaces;
-using CarBook.Persistence.Repositories.BlogRepositories;
-using UdemyCarBook.Persistence.Repositories.CarPricingRepositories;
-using CarBook.Application.Interfaces.CarPricingInterfaces;
-using CarBook.Application.Interfaces.TagCloudInterfaces;
-using CarBook.Persistence.Repositories.TagCloudRepositories;
-using CarBook.Persistence.Repositories.StatisticsRepositories;
-
-using CarBook.Persistence.Repositories.CommentRepositories;
-using CarBook.Application.Interfaces.CommetInterfaces;
-using CarBook.Application.Interfaces.StatisticsInterfaces;
-using CarBook.Application.Interfaces.RentACarInterfaces;
-using UdemyCarBook.Persistence.Repositories.RentACarRepositories;
-using CarBook.Application.Interfaces.CarFeatureInterfaces;
-using CarBook.Persistence.Repositories.CarFeatureRepositories;
-using CarBook.Application.Interfaces.CarDescriptionInterfaces;
-using CarBook.Persistence.Repositories.CarDescriptionRepositories;
-using CarBook.Application.Interfaces.ReviewInterfaces;
-using CarBook.Persistence.Repositories.ReviewRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -55,6 +23,8 @@ builder.Services.AddCors(opt =>
     });
 });
 builder.Services.AddSignalR();
+
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
@@ -90,6 +60,7 @@ builder.Services.AddControllers().AddFluentValidation(x =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -107,5 +78,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 app.MapHub<CarHub>("/carhub");
+
 app.Run();

@@ -8,6 +8,10 @@ namespace CarBokk.WebUI.Controllers
         {
             return View();
         }
+        public IActionResult AuthorIndex()
+        {
+            return View();
+        }
         public PartialViewResult AdminHeaderPartial()
         {
             return PartialView();
@@ -18,6 +22,10 @@ namespace CarBokk.WebUI.Controllers
         }
 
         public PartialViewResult AdminSidebarPartial()
+        {
+            return PartialView();
+        }
+        public PartialViewResult AuthorSidebarPartial()
         {
             return PartialView();
         }

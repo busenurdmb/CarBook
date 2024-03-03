@@ -3,13 +3,17 @@ using Newtonsoft.Json;
 using System.Text;
 using   CarBook.Dto.BlogDtos;
 using CarBook.Dto.CommentDtos;
+using Microsoft.AspNetCore.Authorization;
 //using   CarBook.Dto.CommentDtos;
 //using   CarBook.Dto.LocationDtos;
 
 namespace   CarBook.WebUI.Controllers
 {
+    [Authorize(Roles ="Writer")]
+    
     public class BlogController : Controller
     {
+        
         private readonly IHttpClientFactory _httpClientFactory;
         public BlogController(IHttpClientFactory httpClientFactory)
         {
@@ -29,6 +33,7 @@ namespace   CarBook.WebUI.Controllers
             }
             return View();
         }
+        [Authorize(Roles ="Writer")]
         public async Task<IActionResult> BlogDetail(int id)
         {
             ViewBag.v1 = "Bloglar";

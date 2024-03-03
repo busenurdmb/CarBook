@@ -2,21 +2,27 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
-//builder.Services.AddAuthorization();
+
+
+
+
+
+//JWT tabanlý kimlik doðrulama þemasý
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
     opt.LoginPath = "/Login/Index/";
-    opt.LogoutPath = "/Login/LogOut/";
-    opt.AccessDeniedPath = "/Pages/AccessDenied/";
-    opt.Cookie.SameSite = SameSiteMode.Strict;
-    opt.Cookie.HttpOnly = true;
-    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-    opt.Cookie.Name = "CarBookJwt";
+opt.LogoutPath = "/Login/LogOut/";
+opt.AccessDeniedPath = "/Pages/AccessDenied/";
+opt.Cookie.SameSite = SameSiteMode.Strict;
+opt.Cookie.HttpOnly = true;
+opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+opt.Cookie.Name = "CarBookJwt";
 });
 
 builder.Services.AddControllers(options =>
@@ -26,6 +32,8 @@ builder.Services.AddControllers(options =>
         .Build();
     options.Filters.Add(new AuthorizeFilter(policy));
 });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

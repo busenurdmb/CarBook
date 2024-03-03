@@ -69,7 +69,12 @@ namespace CarBook.WebApi.Controllers
             var value=_commentsRepository.GetCountCommentByBlog(id);
             return Ok(value);
         }
-
+        [HttpGet("GetCommentAllBytAuthorid")]
+        public IActionResult GetCommentAllBytAuthorid(int id)
+        {
+            var value = _commentsRepository.GetCommentAllBytAuthorid(id);
+            return Ok(value);
+        }
         [HttpPost("CreateCommentWithMediator")]
         public async Task<IActionResult> CreateCommentWithMediator(CreateCommentCommand command)
         {

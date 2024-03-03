@@ -15,5 +15,6 @@ namespace CarBook.Application.Interfaces.CommetInterfaces
         T GetById(int id);
         List<T> GetCommentsByBlogId(int id);
         public int GetCountCommentByBlog(int id);
+        public List<T> GetCommentAllBytAuthorid(int id);
     }
 }

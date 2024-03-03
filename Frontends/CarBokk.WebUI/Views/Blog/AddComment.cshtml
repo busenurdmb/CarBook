@@ -15,8 +15,20 @@
             <label for="message">Yorumunuz</label>
             <textarea Name="Description" id="message" cols="30" rows="10" class="form-control"></textarea>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Yorum Yap" class="btn py-3 px-4 btn-primary">
-        </div>
+      
+        @if (User.Identity.IsAuthenticated)
+        {
+           
+            <div class="form-group">
+                <input type="submit" value="Yorum Yap" class="btn py-3 px-4 btn-primary">
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-light text-center lead">
+               Yorum Yapabilmeniz için giriş yapmanız gereklidir <a asp-action="Index" asp-controller="Login">Giriş Yap</a>
+
+            </div>
+        }
     </form>
 </div>

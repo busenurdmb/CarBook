@@ -1,0 +1,41 @@
+﻿@model CreatelogsByAuthorIdDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/AdminLayout/AuthorIndex.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Blog Girişi</h4>
+                        <p class="card-subtitle mb-4">Blog alanına veri girişini aşağıdaki panelden yapabilirsiniz.</p>
+                        <form method="post">
+                            <div class="form-group">
+                                <input type="hidden" asp-for="AuthorID" />
+                                <label for="exampleInputName">Başlık</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Title" placeholder="Yazar Adını Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputDescription">Açıklama</label>
+                                <input type="text" class="form-control" id="exampleInputDescription" asp-for="Description" placeholder="Açıklamayı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputImageUrl"> Görsel</label>
+                                <input type="text" class="form-control" id="exampleInputImageUrl" asp-for="CoverImageUrl" placeholder="Yazar Görsel URL Bilgisini Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputImageUrl"> kategori </label>
+                                <input type="text" class="form-control" id="exampleInputImageUrl" asp-for="CategoryID" placeholder="Yazar Görsel URL Bilgisini Giriniz">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Bloğu Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

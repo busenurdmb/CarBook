@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using CarBook.Dto.BlogDtos;
 using	 CarBook.Dto.CarPricingDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace	CarBook.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class CarPricingController : Controller
     {
 		private readonly IHttpClientFactory _httpClientFactory;

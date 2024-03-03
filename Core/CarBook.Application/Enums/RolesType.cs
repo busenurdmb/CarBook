@@ -11,6 +11,7 @@ namespace CarBook.Application.Enums
         Admin = 1,
         Member = 2,
         Visitor = 3,
-        Manager = 4
+        Manager = 4,
+        Write=5
     }
 }

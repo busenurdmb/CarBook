@@ -23,6 +23,10 @@ namespace CarBook.Application.Features.Mediator.Handlers.AuthorHandlers
             values.Name = request.Name;
             values.Description = request.Description;
             values.ImageUrl = request.ImageUrl;
+            values.Surname= request.Surname;
+            values.Username = request.Username;
+            values.Email = request.Email;
+            values.Password= request.Password;
             await _repository.UpdateAsync(values);
         }
     }

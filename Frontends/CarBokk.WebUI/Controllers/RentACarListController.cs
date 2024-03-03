@@ -4,9 +4,11 @@ using System.Net.Http;
 using System.Text;
 using CarBook.Dto.BrandDtos;
 using CarBook.Dto.RentACarDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBook.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class RentACarListController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

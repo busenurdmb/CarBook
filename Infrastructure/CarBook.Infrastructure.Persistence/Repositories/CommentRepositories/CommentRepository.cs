@@ -2,6 +2,7 @@
 
 using CarBook.Infrastructure.Persistence.Context;
 using CarBook.Application.Interfaces.CommetInterfaces;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace   CarBook.Persistence.Repositories.CommentRepositories
@@ -57,6 +58,27 @@ namespace   CarBook.Persistence.Repositories.CommentRepositories
         public int GetCountCommentByBlog(int id)
         {
             return _context.Comments.Where(x => x.BlogID == id).Count();
+        }
+        //public List<Comment> GetAll()
+        //{
+        //    return _context.Comments.Select(x => new Comment
+        //    {
+        //        CommentID = x.CommentID,
+        //        BlogID = x.BlogID,
+        //        CreatedDate = x.CreatedDate,
+        //        Description = x.Description,
+        //        Name = x.Name
+        //    }).ToList();
+        //}
+        public List<Comment> GetCommentAllBytAuthorid(int id)
+        {
+            //SELECT * FROM Comments WHERE BlogID IN (SELECT BlogID FROM Blogs WHERE AuthorID = 2);
+            //var Authorid=_context.Blogs.Where(x=>x.AuthorID == id);
+            //return _context.Comments.Include(x => x.Blog).Where(b => b.BlogID == id).ToList();
+            var comments = _context.Comments
+    .FromSqlInterpolated($"SELECT * FROM Comments WHERE BlogID IN (SELECT BlogID FROM Blogs WHERE AuthorID = {id})")
+    .ToList();
+            return comments;
         }
     }
 }

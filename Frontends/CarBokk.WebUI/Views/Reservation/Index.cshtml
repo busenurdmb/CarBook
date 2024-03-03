@@ -38,9 +38,22 @@
         <div class="form-group">
             <textarea  asp-for="Description" id="" cols="30" rows="7" class="form-control" placeholder="Varsa Eklemek İstedikleriniz"></textarea>
         </div>
-        <div class="form-group">
+        @if (User.Identity.IsAuthenticated)
+        {
+              <div class="form-group">
             <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-primary py-3 px-5">
-        </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-light text-center lead">
+           Rezervasyon Yapabilmeniz için giriş yapmanız gereklidir <a asp-action="Index" asp-controller="Login">Kayıt Ol</a>
+
+        </div>  
+        }
+      
+        
+      
     </form>
 
 </div>

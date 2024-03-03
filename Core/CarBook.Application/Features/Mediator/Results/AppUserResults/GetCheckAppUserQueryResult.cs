@@ -1,5 +1,7 @@
 ﻿
 
+using CarBook.Application.Interfaces;
+
 namespace   CarBook.Application.Features.Mediator.Results.AppUserResults
 {
     public class GetCheckAppUserQueryResult

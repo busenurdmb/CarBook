@@ -28,7 +28,12 @@ namespace CarBook.Application.Features.Mediator.Handlers.AuthorHandlers
                 AuthorID = values.AuthorID,
                 Name = values.Name,
                 Description = values.Description,
-                ImageUrl = values.ImageUrl
+                ImageUrl = values.ImageUrl,
+                AppRoleId = values.AppRoleId,
+                Email=values.Email,
+                Surname= values.Surname,
+                Username = values.Username,
+                Password = values.Password
             };
         }
     }
