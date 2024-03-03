@@ -53,7 +53,8 @@ namespace CarBook.WebUI.Controllers
                     if (tokenModel.Token != null)
                     {
                         claims.Add(new Claim("carbooktoken", tokenModel.Token));
-                        claims.Add(new Claim("id", claims[0].Value));
+                        claims.Add(new Claim("id", claims[1].Value));
+                        //claims.Add(new Claim("role", claims[0].Value));
                         var claimsIdentity = new ClaimsIdentity(claims, JwtBearerDefaults.AuthenticationScheme);
                         var authProps = new AuthenticationProperties
                         {
@@ -62,7 +63,15 @@ namespace CarBook.WebUI.Controllers
                         };
 
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity), authProps);
-                        return RedirectToAction("Index", "AdminDashboard", new { area = "Admin" });
+
+                        var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                        var role = roleClaim?.Value;
+                        if (role=="Admin"){
+                          return RedirectToAction("Index", "AdminDashboard", new { area = "Admin" });
+                        }
+                        return RedirectToAction("Index", "Default");
+                        
+                       
                       
                     }
                 }
