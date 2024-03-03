@@ -5,9 +5,11 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using CarBook.Dto.CommentDtos;
 using CarBook.Dto.CategoryDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Controllers
 {
+    [Authorize(Roles = "Writer")]
     public class AuthorCommentController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

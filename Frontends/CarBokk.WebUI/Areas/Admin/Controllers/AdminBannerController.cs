@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Areas.Admin.Controllers
 {
-   
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminBanner")]
     public class AdminBannerController : Controller

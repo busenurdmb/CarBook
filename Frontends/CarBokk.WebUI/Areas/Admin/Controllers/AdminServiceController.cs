@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using System.Text;
 using CarBook.Dto.ServiceDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UdemyCarBook.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminService")]
     public class AdminServiceController : Controller

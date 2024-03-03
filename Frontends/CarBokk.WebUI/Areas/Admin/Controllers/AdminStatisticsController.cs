@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using   CarBook.Dto.AuthorDtos;
 using   CarBook.Dto.StatisticsDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UdemyCarBokk.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminStatistics")]
     public class AdminStatisticsController : Controller

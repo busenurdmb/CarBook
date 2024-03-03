@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace   CarBook.WebUI.Controllers
 {
-    [Authorize(Roles ="Writer")]
+    [AllowAnonymous]
     
     public class BlogController : Controller
     {

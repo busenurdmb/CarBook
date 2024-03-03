@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CarBoKk.WebUI.Areas.Admin.Controllers
 {
-   
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminBlog")]
     public class AdminBlogController : Controller

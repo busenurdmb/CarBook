@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using CarBook.Dto.ContactDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminContact")]
     public class AdminContactController : Controller

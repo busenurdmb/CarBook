@@ -4,9 +4,11 @@ using System.Text;
 using   CarBook.Dto.CarFeatureDtos;
 using    CarBook.Dto.CategoryDtos;
 using CarBook.Dto.FeatureDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UdemyCarBook.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminCarFeatureDetail")]
     public class AdminCarFeatureDetailController : Controller

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CarBokk.WebUI.Areas.Admin.Controllers
 {
-   
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminAbout")]
     public class AdminAboutController : Controller

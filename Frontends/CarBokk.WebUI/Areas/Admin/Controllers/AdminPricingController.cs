@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using System.Text;
 using CarBook.Dto.PricingDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UdemyCarBook.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminPricing")]
     public class AdminPricingController : Controller

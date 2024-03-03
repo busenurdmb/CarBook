@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CarBok.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
 
     public class AdminBrandController : Controller
     {

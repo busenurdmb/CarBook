@@ -5,9 +5,11 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using CarBook.Dto.AuthorDtos;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Controllers
 {
+    [Authorize(Roles = "Writer")]
     public class AuthorProfileController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

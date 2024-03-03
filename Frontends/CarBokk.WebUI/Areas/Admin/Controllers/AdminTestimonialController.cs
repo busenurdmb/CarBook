@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using System.Text;
 using CarBook.Dto.TestimonialDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarBokk.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     [Route("Admin/AdminTestimonial")]
     public class AdminTestimonialController : Controller

@@ -48,6 +48,31 @@ namespace CarBokk.WebUI.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> BlogList()
+        {
+            var token = User.Claims.FirstOrDefault(x => x.Type == "carbooktoken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+
+                var id = User.Claims.FirstOrDefault(X => X.Type == "id").Value;
+                if (id != null)
+                {
+
+                }
+                var responseMessage = await client.GetAsync($"https://localhost:7071/api/Blogs/GetAuthorIdAllBlogs?id=" + id);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsondata = await responseMessage.Content.ReadAsStringAsync();
+                    var value = JsonConvert.DeserializeObject<List<GetBlogsByAuthorIdDto>>(jsondata);
+                    return View(value);
+                }
+
+            }
+            return View();
+        }
 
         [HttpGet]
         public  IActionResult Create()

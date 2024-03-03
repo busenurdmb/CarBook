@@ -9,6 +9,7 @@ using CarBook.Dto.LoginDtos;
 
 using CarBook.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 namespace CarBook.WebUI.Controllers
@@ -61,7 +62,8 @@ namespace CarBook.WebUI.Controllers
                         };
 
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity), authProps);
-                        return RedirectToAction("Index", "Default");
+                        return RedirectToAction("Index", "AdminDashboard", new { area = "Admin" });
+                      
                     }
                 }
             }
@@ -113,7 +115,14 @@ namespace CarBook.WebUI.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> Logout()
+        {
+            // Kullanıcının oturumunu sonlandırma
+            await HttpContext.SignOutAsync(JwtBearerDefaults.AuthenticationScheme);
 
+            // Opsiyonel: Kullanıcıyı başka bir sayfaya yönlendir
+            return RedirectToAction("Index", "Default"); // Örneğin, ana sayfaya yönlendir
+        }
 
     }
 }

@@ -1,5 +1,4 @@
-﻿                  
-@model List<GetBlogsByAuthorIdDto>
+﻿@model List<GetBlogsByAuthorIdDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/AuthorIndex.cshtml";
@@ -11,32 +10,11 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Blog Listesi ve İşlemleri</h4>
+                        <h4 class="card-title">Blog Listem  </h4>
                         <p class="card-subtitle mb-4">
-                           Yazar Blog Paneline Hoşgeldiniz
+                            Yazar Blog  Paneline Hoşgeldiniz
                         </p>
-                         @foreach (var item in Model)
-                                    {
-                         
-                         
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="@item.CoverImageUrl" alt="Card image cap">
-                            <div class="card-body">
-                                
-                                    <div class="d-flex mb-3">
-                                        <h5 class="card-title">@item.Title</h5>
-                                        @* <span class="cat">@item.Title</span> *@
-                                        <p class="price ml-auto">@(((DateTime)item.CreatedDate).ToString("dd-yyyy-MMMM")) <span>/Tarih</span></p>
-                                    </div>
-                                    
-                                <p class="card-text">
-                                 @item.Description
-                                </p>
-                                    <a href="/AuthorBlog/Update/@item.BlogID" class="btn btn-primary waves-effect waves-light">Güncelle</a>
-                                  
-                            </div>
-                        </div>
-                        }
+                      
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
@@ -45,8 +23,8 @@
                                         <th>Başlık</th>
                                         <th>Açıklama</th>
                                         <th>Tarih</th>
-                                        <th>Kategori</th>
-                                       <th>Resim</th>
+                                       
+                                        <th>Resim</th>
                                         <th>Blogu Aç</th>
                                         <th>Yorumlar</th>
                                         <th>Sil</th>
@@ -62,8 +40,7 @@
                                             <td>@item.Title</td>
                                             <td>@item.Description</td>
                                             <td>@(((DateTime)item.CreatedDate).ToString("dd-yyyy-MMMM"))</td>
-                                            <td>@item.CategoryID</td>
-                                            @* <td>@item.CoverImageUrl</td> *@
+                                           @* <td>@item.CoverImageUrl</td> *@
                                             <td> <img src="@item.CoverImageUrl" class="form-control" /> </td>
                                             <td><a href="/Blog/BlogDetail/@item.BlogID" class="btn btn-outline-dark">Blogu Aç</a></td>
                                             <td><a href="/Admin/AdminComment/Index/@item.BlogID" class="btn btn-outline-warning">Yorumlar</a></td>
@@ -80,6 +57,4 @@
         </div>
     </div>
 </div>
-
-
 

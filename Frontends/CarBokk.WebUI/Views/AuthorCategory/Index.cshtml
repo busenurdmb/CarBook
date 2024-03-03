@@ -1,8 +1,48 @@
-﻿
+﻿@model List<ResultCategoryDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/AuthorIndex.cshtml";
+    int count = 0;
 }
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Blog Kategorileri Listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Kategoriler listelendiği sayfadır istediğiniz kategoriye blog ekleyebilirsiniz 
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Kategori Adı</th>
+                                         <th>Kategoriye Blog Ekle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@item.Name</td>
+                                            <td><a href="/AuthorCategory/CreateBlogbyCategory/@item.CategoryId" class="btn btn-outline-primary">Kategoriye Bir Blog Ekle</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h1>Index</h1>
 
